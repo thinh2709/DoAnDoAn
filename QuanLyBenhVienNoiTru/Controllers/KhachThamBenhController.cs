@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using QuanLyBenhVienNoiTru.Models;
-using QuanLyBenhVienNoiTru.Data;
+using QuanLyBenhVienNoiTru.Models.Entities;
 
 namespace QuanLyBenhVienNoiTru.Controllers
 {
@@ -13,9 +13,9 @@ namespace QuanLyBenhVienNoiTru.Controllers
     [ApiController]
     public class KhachThamBenhController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext _context;
 
-        public KhachThamBenhController(ApplicationDbContext context)
+        public KhachThamBenhController(QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext context)
         {
             _context = context;
         }

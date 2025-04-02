@@ -1,19 +1,19 @@
 using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web.Mvc;
 using QuanLyBenhVienNoiTru.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using QuanLyBenhVienNoiTru.Models.Context;
+using QuanLyBenhVienNoiTru.Models.Entities;
 
 namespace QuanLyBenhVienNoiTru.Controllers
 {
     [Authorize(Roles = "Admin, Bác sĩ")]
     public class BacSiController : Controller
     {
-        private QuanLyBenhVienNoiTruDbContext db = new QuanLyBenhVienNoiTruDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BacSi
         public ActionResult Index()
@@ -23,13 +23,17 @@ namespace QuanLyBenhVienNoiTru.Controllers
         }
 
         // GET: BacSi/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BacSi bacSi = db.BacSis.Include(b => b.TaiKhoan).FirstOrDefault(b => b.MaBacSi == id);
+            var bacSi = await db.BacSis
+                .Include(b => b.TaiKhoan)
+                .Include(b => b.Khoa)
+                .Include(b => b.DieuTriBenhNhans)
+                .FirstOrDefaultAsync(b => b.MaBacSi == id);
             if (bacSi == null)
             {
                 return HttpNotFound();
@@ -53,7 +57,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "MaBacSi,HoTen,MaTaiKhoan,ChuyenKhoa,SoDienThoai")] BacSi bacSi)
+        public ActionResult Create([Bind("MaBacSi,HoTen,MaTaiKhoan,ChuyenKhoa,SoDienThoai")] QuanLyBenhVienNoiTru.Models.Entities.BacSi bacSi)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +98,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "MaBacSi,HoTen,MaTaiKhoan,ChuyenKhoa,SoDienThoai")] BacSi bacSi)
+        public ActionResult Edit([Bind("MaBacSi", "HoTen", "MaTaiKhoan", "ChuyenKhoa", "SoDienThoai")] BacSi bacSi)
         {
             if (ModelState.IsValid)
             {

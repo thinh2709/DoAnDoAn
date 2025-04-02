@@ -1,0 +1,9 @@
+C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\obj\Debug\net8.0\QuanLyBenhVienNoiTru.csproj.AssemblyReference.cache
+C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\obj\Debug\net8.0\QuanLyBenhVienNoiTru.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\obj\Debug\net8.0\QuanLyBenhVienNoiTru.AssemblyInfoInputs.cache
+C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\obj\Debug\net8.0\QuanLyBenhVienNoiTru.AssemblyInfo.cs
+C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\obj\Debug\net8.0\QuanLyBenhVienNoiTru.csproj.CoreCompileInputs.cache
+C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\obj\Debug\net8.0\QuanLyBenhVienNoiTru.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\obj\Debug\net8.0\QuanLyBenhVienNoiTru.RazorAssemblyInfo.cache
+C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\obj\Debug\net8.0\QuanLyBenhVienNoiTru.RazorAssemblyInfo.cs
+C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\obj\Debug\net8.0\QuanLyBenhVienNoiTru.sourcelink.json

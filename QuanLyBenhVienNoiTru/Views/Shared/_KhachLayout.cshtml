@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Đăng Ký Thăm Bệnh - Quản Lý Bệnh Viện Nội Trú</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css") <!-- Đảm bảo rằng bạn đã định nghĩa bundle này trong BundleConfig -->
+    @Scripts.Render("~/bundles/modernizr") <!-- Đảm bảo rằng bạn đã định nghĩa bundle này trong BundleConfig -->
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,20 +25,20 @@
                     <li>@Html.ActionLink("Lịch sử đăng ký", "LichSu", "LichThamBenh")</li>
                     <li>@Html.ActionLink("Thông tin cá nhân", "ThongTin", "KhachThamBenh")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial") <!-- Đảm bảo rằng bạn đã định nghĩa partial view này -->
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        @RenderBody() <!-- Nơi nội dung của các view con sẽ được hiển thị -->
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Quản Lý Bệnh Viện Nội Trú</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery") <!-- Đảm bảo rằng bạn đã định nghĩa bundle này trong BundleConfig -->
+    @Scripts.Render("~/bundles/bootstrap") <!-- Đảm bảo rằng bạn đã định nghĩa bundle này trong BundleConfig -->
+    @RenderSection("scripts", required: false) <!-- Đảm bảo rằng bạn sử dụng đúng tên section -->
 </body>
 </html>

@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using QuanLyBenhVienNoiTru.Models;
-using QuanLyBenhVienNoiTru.Data;
+using QuanLyBenhVienNoiTru.Models.Entities;
+using QuanLyBenhVienNoiTru.Models.Context;
 
 namespace QuanLyBenhVienNoiTru.Controllers
 {
@@ -13,9 +14,9 @@ namespace QuanLyBenhVienNoiTru.Controllers
     [ApiController]
     public class KhoaController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext _context;
 
-        public KhoaController(ApplicationDbContext context)
+        public KhoaController(QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext context)
         {
             _context = context;
         }

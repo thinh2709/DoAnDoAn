@@ -1,3 +1,5 @@
+namespace QuanLyBenhVienNoiTru.Models.Entities
+{
 public class Khoa
 {
     public int MaKhoa { get; set; }
@@ -6,4 +8,5 @@ public class Khoa
 
     // Navigation properties
     public virtual ICollection<BenhNhan> BenhNhans { get; set; }
+}
 }

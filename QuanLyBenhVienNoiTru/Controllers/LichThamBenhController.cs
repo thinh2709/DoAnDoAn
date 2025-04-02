@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuanLyBenhVienNoiTru.Data;
-using QuanLyBenhVienNoiTru.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using QuanLyBenhVienNoiTru.Models.Entities;
+using QuanLyBenhVienNoiTru.Models.Context;
 
 namespace QuanLyBenhVienNoiTru.Controllers
 {
@@ -15,9 +15,9 @@ namespace QuanLyBenhVienNoiTru.Controllers
     [ApiController]
     public class LichThamBenhController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext _context;
 
-        public LichThamBenhController(ApplicationDbContext context)
+        public LichThamBenhController(QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext context)
         {
             _context = context;
         }
@@ -25,7 +25,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
         // GET: api/LichThamBenh
         [HttpGet]
         [Authorize(Roles = "Admin, Bác sĩ")]
-        public async Task<ActionResult<IEnumerable<LichThamBenh>>> GetLichThamBenh()
+        public async Task<ActionResult<IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh>>> GetLichThamBenh()
         {
             return await _context.LichThamBenh
                 .Include(l => l.KhachThamBenh)
@@ -36,7 +36,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
         // GET: api/LichThamBenh/5
         [HttpGet("{id}")]
         [Authorize]
-        public async Task<ActionResult<LichThamBenh>> GetLichThamBenh(int id)
+        public async Task<ActionResult<QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh>> GetLichThamBenh(int id)
         {
             var lichThamBenh = await _context.LichThamBenh
                 .Include(l => l.KhachThamBenh)
@@ -72,7 +72,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
         // GET: api/LichThamBenh/BenhNhan/5
         [HttpGet("BenhNhan/{maBenhNhan}")]
         [Authorize(Roles = "Admin, Bác sĩ")]
-        public async Task<ActionResult<IEnumerable<LichThamBenh>>> GetLichThamBenhByBenhNhan(int maBenhNhan)
+        public async Task<ActionResult<IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh>>> GetLichThamBenhByBenhNhan(int maBenhNhan)
         {
             return await _context.LichThamBenh
                 .Include(l => l.KhachThamBenh)
@@ -84,7 +84,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
         // GET: api/LichThamBenh/Khach
         [HttpGet("Khach")]
         [Authorize(Roles = "Khách")]
-        public async Task<ActionResult<IEnumerable<LichThamBenh>>> GetLichThamBenhByKhach()
+        public async Task<ActionResult<IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh>>> GetLichThamBenhByKhach()
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim == null)
@@ -110,7 +110,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
         // POST: api/LichThamBenh
         [HttpPost]
         [Authorize(Roles = "Khách")]
-        public async Task<ActionResult<LichThamBenh>> PostLichThamBenh(LichThamBenh lichThamBenh)
+        public async Task<ActionResult<QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh>> PostLichThamBenh(QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh lichThamBenh)
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim == null)
@@ -151,7 +151,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
         // PUT: api/LichThamBenh/5
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<IActionResult> PutLichThamBenh(int id, LichThamBenh lichThamBenh)
+        public async Task<IActionResult> PutLichThamBenh(int id, QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh lichThamBenh)
         {
             if (id != lichThamBenh.MaLich)
             {
@@ -174,7 +174,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
                 }
 
                 var userId = int.Parse(userIdClaim.Value);
-                var khach = await _context.KhachThamBenh.FirstOrDefaultAsync(k => k.MaTaiKhoan == userId);
+                var khach = await _context.QuanLyBenhVienNoiTru.Models.Entities.KhachThamBenh.FirstOrDefaultAsync(k => k.MaTaiKhoan == userId);
                 
                 if (khach == null || existingLich.MaKhach != khach.MaKhach)
                 {

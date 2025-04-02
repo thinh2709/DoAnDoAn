@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuanLyBenhVienNoiTru.Data;
-using QuanLyBenhVienNoiTru.Models;
+using QuanLyBenhVienNoiTru.Models.Entities;
+using QuanLyBenhVienNoiTru.Models.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +14,9 @@ namespace QuanLyBenhVienNoiTru.Controllers
     [ApiController]
     public class ChiPhiController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext _context;
 
-        public ChiPhiController(ApplicationDbContext context)
+        public ChiPhiController(QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext context)
         {
             _context = context;
         }

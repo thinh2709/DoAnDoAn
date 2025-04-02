@@ -45,8 +45,8 @@ namespace QuanLyBenhVienNoiTru.ViewModels
         public string Phong { get; set; }
         
         // Danh sách lựa chọn để hiển thị trong dropdown
-        public IEnumerable<KhachThamBenh> DanhSachKhachTham { get; set; }
-        public IEnumerable<BenhNhan> DanhSachBenhNhan { get; set; }
+        public IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.KhachThamBenh> DanhSachKhachTham { get; set; }
+        public IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.BenhNhan> DanhSachBenhNhan { get; set; }
 
         [Display(Name = "Ghi chú")]
         [StringLength(200)]

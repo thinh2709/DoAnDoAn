@@ -20,7 +20,7 @@
             <dd>@Model.BenhNhan.HoTen</dd>
             
             <dt>Ngày sinh:</dt>
-            <dd>@Model.BenhNhan.NgaySinh.ToString("dd/MM/yyyy")</dd>
+            <dd>@Model.BenhNhan.NgaySinh.Value.ToString("dd/MM/yyyy")</dd>
             
             <dt>Giới tính:</dt>
             <dd>@Model.BenhNhan.GioiTinh</dd>
@@ -29,7 +29,7 @@
             <dd>@(Model.BenhNhan.BaoHiemYTe ? "Có" : "Không")</dd>
             
             <dt>Ngày nhập viện:</dt>
-            <dd>@Model.BenhNhan.NgayNhapVien.ToString("dd/MM/yyyy")</dd>
+            <dd>@Model.BenhNhan.NgayNhapVien.Value.ToString("dd/MM/yyyy")</dd>
             
             <dt>Ngày xuất viện:</dt>
             <dd>@(Model.BenhNhan.NgayXuatVien.HasValue ? Model.BenhNhan.NgayXuatVien.Value.ToString("dd/MM/yyyy") : "Chưa xuất viện")</dd>
@@ -56,7 +56,7 @@
             <dd>@(Model.DaThanhToan ? "Đã thanh toán" : "Chưa thanh toán")</dd>
             
             <dt>Ngày lập:</dt>
-            <dd>@Model.NgayLap.ToString("dd/MM/yyyy")</dd>
+            <dd>@Model.NgayLap.Value.ToString("dd/MM/yyyy")</dd>
         </dl>
     </div>
 </div>
@@ -80,7 +80,7 @@
                 <td>@i</td>
                 <td>@item.TenDieuTri</td>
                 <td>@item.TenBacSi</td>
-                <td>@Convert.ToDateTime(item.NgayThucHien).ToString("dd/MM/yyyy")</td>
+                <td>@(item.NgayThucHien != null ? Convert.ToDateTime(item.NgayThucHien).ToString("dd/MM/yyyy") : "N/A")</td>
                 <td>@string.Format("{0:N0}", item.ChiPhi) VNĐ</td>
             </tr>
             i++;

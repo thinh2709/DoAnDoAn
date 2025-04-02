@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using QuanLyBenhVienNoiTru.Models;
-using QuanLyBenhVienNoiTru.Data;
+using QuanLyBenhVienNoiTru.Models.Context;
+using QuanLyBenhVienNoiTru.Models.Entities;
 
 namespace QuanLyBenhVienNoiTru.Controllers
 {
@@ -13,9 +13,9 @@ namespace QuanLyBenhVienNoiTru.Controllers
     [ApiController]
     public class DieuTriController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext _context;
 
-        public DieuTriController(ApplicationDbContext context)
+        public DieuTriController(QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext context)
         {
             _context = context;
         }
@@ -29,7 +29,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
 
         // GET: api/DieuTri/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<HinhThucDieuTri>> GetHinhThucDieuTri(int id)
+        public async Task<ActionResult<QuanLyBenhVienNoiTru.Models.Entities.HinhThucDieuTri>> GetHinhThucDieuTri(int id)
         {
             var hinhThucDieuTri = await _context.HinhThucDieuTri.FindAsync(id);
 
@@ -43,7 +43,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
 
         // POST: api/DieuTri
         [HttpPost]
-        public async Task<ActionResult<HinhThucDieuTri>> PostHinhThucDieuTri(HinhThucDieuTri hinhThucDieuTri)
+        public async Task<ActionResult<QuanLyBenhVienNoiTru.Models.Entities.HinhThucDieuTri>> PostHinhThucDieuTri(QuanLyBenhVienNoiTru.Models.Entities.HinhThucDieuTri hinhThucDieuTri)
         {
             _context.HinhThucDieuTri.Add(hinhThucDieuTri);
             await _context.SaveChangesAsync();
@@ -53,7 +53,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
 
         // PUT: api/DieuTri/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutHinhThucDieuTri(int id, HinhThucDieuTri hinhThucDieuTri)
+        public async Task<IActionResult> PutHinhThucDieuTri(int id, QuanLyBenhVienNoiTru.Models.Entities.HinhThucDieuTri hinhThucDieuTri)
         {
             if (id != hinhThucDieuTri.MaDieuTri)
             {
@@ -106,7 +106,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
 
         // GET: api/DieuTri/BenhNhan/5
         [HttpGet("BenhNhan/{id}")]
-        public async Task<ActionResult<IEnumerable<DieuTriBenhNhan>>> GetDieuTriCuaBenhNhan(int id)
+        public async Task<ActionResult<IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.DieuTriBenhNhan>>> GetDieuTriCuaBenhNhan(int id)
         {
             var benhNhan = await _context.BenhNhan.FindAsync(id);
             
@@ -125,7 +125,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
 
         // POST: api/DieuTri/BenhNhan
         [HttpPost("BenhNhan")]
-        public async Task<ActionResult<DieuTriBenhNhan>> ThemDieuTriChoBenhNhan(DieuTriBenhNhan dieuTri)
+        public async Task<ActionResult<QuanLyBenhVienNoiTru.Models.Entities.DieuTriBenhNhan>> ThemDieuTriChoBenhNhan(QuanLyBenhVienNoiTru.Models.Entities.DieuTriBenhNhan dieuTri)
         {
             var benhNhan = await _context.BenhNhan.FindAsync(dieuTri.MaBenhNhan);
             var hinhThucDieuTri = await _context.HinhThucDieuTri.FindAsync(dieuTri.MaDieuTri);
@@ -173,7 +173,7 @@ namespace QuanLyBenhVienNoiTru.Controllers
 
         // PUT: api/DieuTri/BenhNhan/5
         [HttpPut("BenhNhan/{id}")]
-        public async Task<IActionResult> CapNhatDieuTriBenhNhan(int id, DieuTriBenhNhan dieuTri)
+        public async Task<IActionResult> CapNhatDieuTriBenhNhan(int id, QuanLyBenhVienNoiTru.Models.Entities.DieuTriBenhNhan dieuTri)
         {
             if (id != dieuTri.MaDieuTriBenhNhan)
             {

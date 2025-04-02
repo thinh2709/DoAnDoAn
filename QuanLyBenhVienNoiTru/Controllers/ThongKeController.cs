@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuanLyBenhVienNoiTru.Data;
+using QuanLyBenhVienNoiTru.Models.Context;
+using QuanLyBenhVienNoiTru.Models.Entities;
 using QuanLyBenhVienNoiTru.Models;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace QuanLyBenhVienNoiTru.Controllers
     [Authorize(Roles = "Admin, Bác sĩ")]
     public class ThongKeController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext _context;
 
-        public ThongKeController(ApplicationDbContext context)
+        public ThongKeController(QuanLyBenhVienNoiTru.Models.Context.ApplicationDbContext context)
         {
             _context = context;
         }

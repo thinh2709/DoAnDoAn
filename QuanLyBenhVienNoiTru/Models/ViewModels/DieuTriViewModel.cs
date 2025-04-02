@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using QuanLyBenhVienNoiTru.Models;
+using QuanLyBenhVienNoiTru.Models.Entities;
 
 namespace QuanLyBenhVienNoiTru.ViewModels
 {
@@ -48,8 +48,8 @@ namespace QuanLyBenhVienNoiTru.ViewModels
         public string TenKhoa { get; set; }
 
         // Danh sách lựa chọn để hiển thị trong dropdown
-        public IEnumerable<BenhNhan> DanhSachBenhNhan { get; set; }
-        public IEnumerable<HinhThucDieuTri> DanhSachHinhThucDieuTri { get; set; }
+        public IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.BenhNhan> DanhSachBenhNhan { get; set; }
+        public IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.HinhThucDieuTri> DanhSachHinhThucDieuTri { get; set; }
         public IEnumerable<BacSi> DanhSachBacSi { get; set; }
     }
 
@@ -62,8 +62,8 @@ namespace QuanLyBenhVienNoiTru.ViewModels
         public int? MaKhoa { get; set; }
         public int? MaBacSi { get; set; }
         public int? MaBenhNhan { get; set; }
-        public IEnumerable<Khoa> DanhSachKhoa { get; set; }
-        public IEnumerable<BacSi> DanhSachBacSi { get; set; }
+        public IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.Khoa> DanhSachKhoa { get; set; }
+        public IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.BacSi> DanhSachBacSi { get; set; }
         public int TongSoDieuTri { get; set; }
     }
 }

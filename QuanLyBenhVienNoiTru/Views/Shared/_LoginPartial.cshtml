@@ -1,0 +1,22 @@
+@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="#">@User.Identity.Name</a>
+        </li>
+        <li>
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a>
+            }
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Đăng ký", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

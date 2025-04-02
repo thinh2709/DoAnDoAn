@@ -1,0 +1,62 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.Khoa
+
+@{
+    ViewBag.Title = "Chi tiết khoa";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Chi tiết khoa @Model.TenKhoa</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mã khoa:</dt>
+        <dd>@Html.DisplayFor(model => model.MaKhoa)</dd>
+
+        <dt>Tên khoa:</dt>
+        <dd>@Html.DisplayFor(model => model.TenKhoa)</dd>
+
+        <dt>Mô tả:</dt>
+        <dd>@Html.DisplayFor(model => model.MoTa)</dd>
+        
+        <dt>Số bệnh nhân hiện tại:</dt>
+        <dd>@ViewBag.SoBenhNhanHienTai</dd>
+    </dl>
+</div>
+
+<h3>Danh sách bệnh nhân đang điều trị</h3>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã BN</th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Ngày nhập viện</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bn in ViewBag.DanhSachBenhNhan)
+            {
+                <tr>
+                    <td>@bn.MaBenhNhan</td>
+                    <td>@bn.HoTen</td>
+                    <td>@bn.NgaySinh.ToString("dd/MM/yyyy")</td>
+                    <td>@bn.GioiTinh</td>
+                    <td>@bn.NgayNhapVien.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        @Html.ActionLink("Chi tiết", "Details", "BenhNhan", new { id = bn.MaBenhNhan }, new { @class = "btn btn-info btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.MaKhoa }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-default" })
+</p>

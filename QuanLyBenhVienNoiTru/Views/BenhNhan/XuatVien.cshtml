@@ -1,0 +1,65 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.BenhNhan
+
+@{
+    ViewBag.Title = "Xuất viện";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Xác nhận xuất viện</h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Thông tin bệnh nhân</h3>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>Họ và tên:</dt>
+            <dd>@Html.DisplayFor(model => model.HoTen)</dd>
+
+            <dt>Ngày sinh:</dt>
+            <dd>@Html.DisplayFor(model => model.NgaySinh)</dd>
+
+            <dt>Giới tính:</dt>
+            <dd>@Html.DisplayFor(model => model.GioiTinh)</dd>
+
+            <dt>Khoa điều trị:</dt>
+            <dd>@Html.DisplayFor(model => model.Khoa.TenKhoa)</dd>
+
+            <dt>Ngày nhập viện:</dt>
+            <dd>@Html.DisplayFor(model => model.NgayNhapVien)</dd>
+        </dl>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MaBenhNhan)
+    
+    <div class="form-horizontal">
+        <div class="alert alert-warning">
+            <p>Bạn có chắc chắn muốn cho bệnh nhân này xuất viện không?</p>
+            <p><strong>Lưu ý:</strong> Vui lòng kiểm tra tình trạng thanh toán trước khi xác nhận.</p>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayXuatVien, "Ngày xuất viện", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgayXuatVien, new { htmlAttributes = new { @class = "form-control", type = "date", value = DateTime.Now.ToString("yyyy-MM-dd") } })
+                @Html.ValidationMessageFor(model => model.NgayXuatVien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Xác nhận xuất viện" class="btn btn-primary" />
+                @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/quanly-benhnhan.js"></script>
+}

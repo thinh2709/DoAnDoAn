@@ -1,0 +1,34 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.BacSi
+
+@{
+    ViewBag.Title = "Xóa bác sĩ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Xác nhận xóa bác sĩ</h2>
+
+<div class="alert alert-danger">
+    <h4>Bạn có chắc chắn muốn xóa bác sĩ này?</h4>
+</div>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Họ và tên:</dt>
+        <dd>@Html.DisplayFor(model => model.HoTen)</dd>
+
+        <dt>Chuyên khoa:</dt>
+        <dd>@Html.DisplayFor(model => model.ChuyenKhoa)</dd>
+
+        <dt>Số điện thoại:</dt>
+        <dd>@Html.DisplayFor(model => model.SoDienThoai)</dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

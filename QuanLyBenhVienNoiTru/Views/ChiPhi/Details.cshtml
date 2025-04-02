@@ -1,0 +1,102 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.ChiPhiDieuTri
+
+@{
+    ViewBag.Title = "Chi tiết chi phí điều trị";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết chi phí điều trị</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Thông tin bệnh nhân</h3>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>Mã bệnh nhân:</dt>
+            <dd>@Model.BenhNhan.MaBenhNhan</dd>
+            
+            <dt>Họ tên:</dt>
+            <dd>@Model.BenhNhan.HoTen</dd>
+            
+            <dt>Ngày sinh:</dt>
+            <dd>@Model.BenhNhan.NgaySinh.ToString("dd/MM/yyyy")</dd>
+            
+            <dt>Giới tính:</dt>
+            <dd>@Model.BenhNhan.GioiTinh</dd>
+            
+            <dt>Bảo hiểm y tế:</dt>
+            <dd>@(Model.BenhNhan.BaoHiemYTe ? "Có" : "Không")</dd>
+            
+            <dt>Ngày nhập viện:</dt>
+            <dd>@Model.BenhNhan.NgayNhapVien.ToString("dd/MM/yyyy")</dd>
+            
+            <dt>Ngày xuất viện:</dt>
+            <dd>@(Model.BenhNhan.NgayXuatVien.HasValue ? Model.BenhNhan.NgayXuatVien.Value.ToString("dd/MM/yyyy") : "Chưa xuất viện")</dd>
+            
+            <dt>Khoa:</dt>
+            <dd>@Model.BenhNhan.Khoa.TenKhoa</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Thông tin chi phí</h3>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>Mã chi phí:</dt>
+            <dd>@Model.MaChiPhi</dd>
+            
+            <dt>Tổng chi phí:</dt>
+            <dd>@string.Format("{0:N0}", Model.TongChiPhi) VNĐ</dd>
+            
+            <dt>Trạng thái:</dt>
+            <dd>@(Model.DaThanhToan ? "Đã thanh toán" : "Chưa thanh toán")</dd>
+            
+            <dt>Ngày lập:</dt>
+            <dd>@Model.NgayLap.ToString("dd/MM/yyyy")</dd>
+        </dl>
+    </div>
+</div>
+
+<h3>Chi tiết các khoản điều trị</h3>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>STT</th>
+        <th>Hình thức điều trị</th>
+        <th>Bác sĩ thực hiện</th>
+        <th>Ngày thực hiện</th>
+        <th>Chi phí</th>
+    </tr>
+    
+    @{
+        int i = 1;
+        foreach (var item in ViewBag.ChiTietDieuTri)
+        {
+            <tr>
+                <td>@i</td>
+                <td>@item.TenDieuTri</td>
+                <td>@item.TenBacSi</td>
+                <td>@Convert.ToDateTime(item.NgayThucHien).ToString("dd/MM/yyyy")</td>
+                <td>@string.Format("{0:N0}", item.ChiPhi) VNĐ</td>
+            </tr>
+            i++;
+        }
+    }
+    
+    <tr class="info">
+        <td colspan="4" style="text-align: right;"><strong>Tổng chi phí:</strong></td>
+        <td><strong>@string.Format("{0:N0}", Model.TongChiPhi) VNĐ</strong></td>
+    </tr>
+</table>
+
+<div>
+    @if (!Model.DaThanhToan)
+    {
+        @Html.ActionLink("Thanh toán", "ThanhToan", new { id = Model.MaChiPhi }, new { @class = "btn btn-success" })
+    }
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-default" })
+</div>

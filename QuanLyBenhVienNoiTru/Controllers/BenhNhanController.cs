@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using QuanLyBenhVienNoiTru.Models.ViewModels;
 using QuanLyBenhVienNoiTru.Repositories;
 using QuanLyBenhVienNoiTru.Services;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace QuanLyBenhVienNoiTru.Controllers
 {

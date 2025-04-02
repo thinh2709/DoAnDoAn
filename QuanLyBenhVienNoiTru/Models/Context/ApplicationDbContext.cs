@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using QuanLyBenhVienNoiTru.Models.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QuanLyBenhVienNoiTru.Models.Context
 {

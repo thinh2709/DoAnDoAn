@@ -1,0 +1,201 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = QuanLyBenhVienNoiTru
+build_property.RootNamespace = QuanLyBenhVienNoiTru
+build_property.ProjectDir = C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 2.1
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\thinh\Downloads\DoAnData\QuanLyBenhVienNoiTru
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 7.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Account/DangKy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEYW5nS3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Account/DoiMatKhau.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEb2lNYXRLaGF1LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BacSi/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFjU2lcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BacSi/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFjU2lcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BacSi/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFjU2lcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BacSi/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFjU2lcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BacSi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFjU2lcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BenhNhan/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVuaE5oYW5cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BenhNhan/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVuaE5oYW5cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BenhNhan/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVuaE5oYW5cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BenhNhan/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVuaE5oYW5cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BenhNhan/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVuaE5oYW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BenhNhan/NhapVien.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVuaE5oYW5cTmhhcFZpZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/BenhNhan/XuatVien.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVuaE5oYW5cWHVhdFZpZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/ChiPhi/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hpUGhpXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/ChiPhi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hpUGhpXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/ChiPhi/ThanhToan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hpUGhpXFRoYW5oVG9hbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/DieuTri/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldVRyaVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/DieuTri/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldVRyaVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/DieuTri/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldVRyaVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/DieuTri/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldVRyaVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Khoa/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hvYVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Khoa/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hvYVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Khoa/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hvYVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Khoa/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hvYVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Khoa/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hvYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/LichThamBenh/Approve.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGljaFRoYW1CZW5oXEFwcHJvdmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/LichThamBenh/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGljaFRoYW1CZW5oXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/LichThamBenh/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGljaFRoYW1CZW5oXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Shared/_BacSiLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9CYWNTaUxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Shared/_KhachLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9LaGFjaExheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/ThongKe/BaoCaoBenhNhan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdLZVxCYW9DYW9CZW5oTmhhbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/ThongKe/BaoCaoTaiChinh.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdLZVxCYW9DYW9UYWlDaGluaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/ThongKe/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdLZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thinh/Downloads/DoAnData/QuanLyBenhVienNoiTru/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

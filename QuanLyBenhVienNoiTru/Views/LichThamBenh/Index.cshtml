@@ -1,0 +1,115 @@
+@model IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh>
+
+@{
+    ViewBag.Title = "Danh sách lịch thăm bệnh";
+    Layout = User.IsInRole("Admin") ? "~/Views/Shared/_AdminLayout.cshtml" :
+             User.IsInRole("Bác sĩ") ? "~/Views/Shared/_BacSiLayout.cshtml" :
+             "~/Views/Shared/_KhachLayout.cshtml";
+}
+
+<h2>Danh sách lịch thăm bệnh</h2>
+
+<p>
+    @if (User.IsInRole("Khách"))
+    {
+        @Html.ActionLink("Đăng ký thăm bệnh", "Create", null, new { @class = "btn btn-primary" })
+    }
+</p>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Lịch thăm bệnh</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm theo tên bệnh nhân..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-hover" id="lichThambenhTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MaLich)
+                            </th>
+                            <th>
+                                Khách thăm
+                            </th>
+                            <th>
+                                Bệnh nhân
+                            </th>
+                            <th>
+                                Thời gian thăm
+                            </th>
+                            <th>
+                                Trạng thái
+                            </th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach (var item in Model) {
+                        <tr class="@(item.TrangThai == "Chờ duyệt" ? "warning" : (item.TrangThai == "Đã duyệt" ? "success" : "danger"))">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaLich)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.KhachThamBenh.HoTen)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BenhNhan.HoTen)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ThoiGianTham)
+                            </td>
+                            <td>
+                                <span class="label @(item.TrangThai == "Chờ duyệt" ? "label-warning" : (item.TrangThai == "Đã duyệt" ? "label-success" : "label-danger"))">
+                                    @Html.DisplayFor(modelItem => item.TrangThai)
+                                </span>
+                            </td>
+                            <td>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Bác sĩ"))
+                                {
+                                    if (item.TrangThai == "Chờ duyệt")
+                                    {
+                                        @Html.ActionLink("Duyệt", "Approve", new { id = item.MaLich }, new { @class = "btn btn-xs btn-success" })
+                                        @Html.ActionLink("Từ chối", "Reject", new { id = item.MaLich }, new { @class = "btn btn-xs btn-danger" })
+                                    }
+                                }
+                                @if (User.IsInRole("Khách") && item.TrangThai == "Chờ duyệt")
+                                {
+                                    @Html.ActionLink("Hủy", "Cancel", new { id = item.MaLich }, new { @class = "btn btn-xs btn-warning" })
+                                }
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.MaLich }, new { @class = "btn btn-xs btn-info" })
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#searchInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#lichThambenhTable tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

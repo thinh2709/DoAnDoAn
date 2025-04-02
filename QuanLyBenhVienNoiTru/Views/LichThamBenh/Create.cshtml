@@ -1,0 +1,113 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh
+
+@{
+    ViewBag.Title = "Đăng ký thăm bệnh";
+    Layout = "~/Views/Shared/_KhachLayout.cshtml";
+}
+
+<h2>Đăng ký thăm bệnh</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="alert alert-info">
+            <strong>Lưu ý!</strong> Thời gian thăm bệnh từ 8:00 - 17:00 hàng ngày. Mỗi bệnh nhân được thăm tối đa 2 lần/ngày và mỗi lần không quá 30 phút.
+        </div>
+        
+        @if (ViewBag.MaKhach != null)
+        {
+            @Html.Hidden("MaKhach", (int)ViewBag.MaKhach)
+        }
+        else
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaKhach, "Người thăm", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MaKhach", null, "-- Chọn người thăm --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MaKhach, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaBenhNhan, "Bệnh nhân", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaBenhNhan", null, "-- Chọn bệnh nhân --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaBenhNhan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThoiGianTham, "Thời gian thăm", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThoiGianTham, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
+                @Html.ValidationMessageFor(model => model.ThoiGianTham, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Đăng ký" class="btn btn-primary" />
+                @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+<div id="thongTinBenhNhan" class="well" style="display:none; margin-top: 20px;">
+    <h4>Thông tin bệnh nhân</h4>
+    <dl class="dl-horizontal">
+        <dt>Họ tên:</dt>
+        <dd id="hoTenBenhNhan"></dd>
+        <dt>Ngày sinh:</dt>
+        <dd id="ngaySinhBenhNhan"></dd>
+        <dt>Khoa:</dt>
+        <dd id="khoaBenhNhan"></dd>
+        <dt>Ngày nhập viện:</dt>
+        <dd id="ngayNhapVien"></dd>
+    </dl>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/quanly-lichkham.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#MaBenhNhan").change(function () {
+                var maBenhNhan = $(this).val();
+                if (maBenhNhan) {
+                    $.ajax({
+                        url: '@Url.Action("GetThongTinBenhNhan", "LichThamBenh")',
+                        type: 'GET',
+                        data: { maBenhNhan: maBenhNhan },
+                        success: function (data) {
+                            $("#hoTenBenhNhan").text(data.HoTen);
+                            $("#ngaySinhBenhNhan").text(data.NgaySinh);
+                            $("#khoaBenhNhan").text(data.TenKhoa);
+                            $("#ngayNhapVien").text(data.NgayNhapVien);
+                            $("#thongTinBenhNhan").show();
+                        }
+                    });
+                } else {
+                    $("#thongTinBenhNhan").hide();
+                }
+            });
+
+            // Kiểm tra thời gian thăm hợp lệ
+            $("form").submit(function (e) {
+                var thoiGianTham = new Date($("#ThoiGianTham").val());
+                var gio = thoiGianTham.getHours();
+                
+                if (gio < 8 || gio >= 17) {
+                    alert("Thời gian thăm bệnh phải trong khoảng từ 8:00 đến 17:00!");
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}

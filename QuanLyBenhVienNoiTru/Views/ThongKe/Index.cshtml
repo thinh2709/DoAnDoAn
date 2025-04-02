@@ -1,0 +1,173 @@
+@{
+    ViewBag.Title = "Thống kê tổng hợp";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Thống kê tổng hợp</h2>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tổng số bệnh nhân</h3>
+            </div>
+            <div class="panel-body">
+                <h3>@ViewBag.TongBenhNhan</h3>
+                <p>Bệnh nhân đang điều trị: @ViewBag.BenhNhanDangDieuTri</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tổng số bác sĩ</h3>
+            </div>
+            <div class="panel-body">
+                <h3>@ViewBag.TongBacSi</h3>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tổng doanh thu</h3>
+            </div>
+            <div class="panel-body">
+                <h3>@string.Format("{0:N0}", ViewBag.TongDoanhThu) VNĐ</h3>
+                <p>Chưa thanh toán: @string.Format("{0:N0}", ViewBag.ChuaThanhToan) VNĐ</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lịch thăm khám hôm nay</h3>
+            </div>
+            <div class="panel-body">
+                <h3>@ViewBag.LichThamHomNay</h3>
+                <p>Chờ duyệt: @ViewBag.LichChoDuyet</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Thống kê bệnh nhân theo khoa</h3>
+            </div>
+            <div class="panel-body">
+                <canvas id="chartBenhNhanTheoKhoa" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Thống kê doanh thu theo tháng</h3>
+            </div>
+            <div class="panel-body">
+                <canvas id="chartDoanhThuTheoThang" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Báo cáo nhanh</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="well">
+                            <h4>Báo cáo bệnh nhân</h4>
+                            <p>Thống kê chi tiết về bệnh nhân theo thời gian, khoa, tình trạng...</p>
+                            <a href="@Url.Action("BaoCaoBenhNhan")" class="btn btn-primary">Xem báo cáo</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="well">
+                            <h4>Báo cáo tài chính</h4>
+                            <p>Thống kê chi tiết về doanh thu, chi phí theo thời gian, khoa...</p>
+                            <a href="@Url.Action("BaoCaoTaiChinh")" class="btn btn-success">Xem báo cáo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script>
+        // Biểu đồ thống kê bệnh nhân theo khoa
+        var ctxBenhNhan = document.getElementById('chartBenhNhanTheoKhoa').getContext('2d');
+        var chartBenhNhan = new Chart(ctxBenhNhan, {
+            type: 'pie',
+            data: {
+                labels: @Html.Raw(Json.Encode(ViewBag.TenKhoa)),
+                datasets: [{
+                    data: @Html.Raw(Json.Encode(ViewBag.SoLuongBenhNhan)),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Số lượng bệnh nhân theo khoa'
+                }
+            }
+        });
+        
+        // Biểu đồ thống kê doanh thu theo tháng
+        var ctxDoanhThu = document.getElementById('chartDoanhThuTheoThang').getContext('2d');
+        var chartDoanhThu = new Chart(ctxDoanhThu, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Encode(ViewBag.Thang)),
+                datasets: [{
+                    label: 'Doanh thu (VNĐ)',
+                    data: @Html.Raw(Json.Encode(ViewBag.DoanhThu)),
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value) {
+                                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ';
+                            }
+                        }
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: 'Doanh thu theo tháng'
+                }
+            }
+        });
+    </script>
+}

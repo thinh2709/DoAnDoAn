@@ -1,0 +1,72 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.DieuTriBenhNhan
+
+@{
+    ViewBag.Title = "Chỉnh sửa điều trị";
+    Layout = User.IsInRole("Admin") ? "~/Views/Shared/_AdminLayout.cshtml" :
+             User.IsInRole("Bác sĩ") ? "~/Views/Shared/_BacSiLayout.cshtml" : 
+             "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chỉnh sửa điều trị</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaDieuTriBenhNhan)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaBenhNhan, "Bệnh nhân", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaBenhNhan", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaBenhNhan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaDieuTri, "Hình thức điều trị", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaDieuTri", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaDieuTri, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaBacSi, "Bác sĩ thực hiện", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaBacSi", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaBacSi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayThucHien, "Ngày thực hiện", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgayThucHien, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.ValidationMessageFor(model => model.NgayThucHien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQua, "Kết quả", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.KetQua, new { @class = "form-control", rows = 5 })
+                @Html.ValidationMessageFor(model => model.KetQua, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
+                @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

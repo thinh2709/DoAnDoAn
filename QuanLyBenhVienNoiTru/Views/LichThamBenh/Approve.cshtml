@@ -1,0 +1,94 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh
+
+@{
+    ViewBag.Title = "Duyệt lịch thăm bệnh";
+    Layout = User.IsInRole("Admin") ? "~/Views/Shared/_AdminLayout.cshtml" : "~/Views/Shared/_BacSiLayout.cshtml";
+}
+
+<h2>Duyệt lịch thăm bệnh</h2>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Thông tin lịch thăm bệnh #@Model.MaLich</h3>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Người thăm:</dt>
+                    <dd>@Model.KhachThamBenh.HoTen</dd>
+
+                    <dt>Mối quan hệ:</dt>
+                    <dd>@Model.KhachThamBenh.MoiQuanHe</dd>
+
+                    <dt>Số điện thoại:</dt>
+                    <dd>@Model.KhachThamBenh.SoDienThoai</dd>
+
+                    <dt>Bệnh nhân:</dt>
+                    <dd>@Model.BenhNhan.HoTen</dd>
+
+                    <dt>Khoa điều trị:</dt>
+                    <dd>@Model.BenhNhan.Khoa.TenKhoa</dd>
+
+                    <dt>Thời gian thăm:</dt>
+                    <dd>@string.Format("{0:dd/MM/yyyy HH:mm}", Model.ThoiGianTham)</dd>
+
+                    <dt>Trạng thái:</dt>
+                    <dd>
+                        <span class="label label-warning">@Model.TrangThai</span>
+                    </dd>
+                </dl>
+
+                <div class="alert alert-info">
+                    <h4>Lịch thăm bệnh của bệnh nhân @Model.BenhNhan.HoTen ngày @string.Format("{0:dd/MM/yyyy}", Model.ThoiGianTham)</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Người thăm</th>
+                                <th>Thời gian</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.LichThamCungNgay as List<QuanLyBenhVienNoiTru.Models.Entities.LichThamBenh>)
+                            {
+                                <tr>
+                                    <td>@item.KhachThamBenh.HoTen</td>
+                                    <td>@string.Format("{0:HH:mm}", item.ThoiGianTham)</td>
+                                    <td>
+                                        <span class="label @(item.TrangThai == "Chờ duyệt" ? "label-warning" : (item.TrangThai == "Đã duyệt" ? "label-success" : "label-danger"))">
+                                            @item.TrangThai
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @using (Html.BeginForm("ApproveConfirm", "LichThamBenh", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.MaLich)
+                    
+                    <div class="form-group">
+                        <label for="GhiChu">Ghi chú (nếu có):</label>
+                        <textarea name="GhiChu" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">
+                            <i class="glyphicon glyphicon-ok"></i> Duyệt lịch thăm
+                        </button>
+                        <a href="@Url.Action("Reject", new { id = Model.MaLich })" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-remove"></i> Từ chối
+                        </a>
+                        <a href="@Url.Action("Index")" class="btn btn-default">
+                            <i class="glyphicon glyphicon-arrow-left"></i> Quay lại
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

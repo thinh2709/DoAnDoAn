@@ -1,0 +1,157 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.ChiPhiDieuTri
+
+@{
+    ViewBag.Title = "Thanh toán chi phí";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thanh toán chi phí điều trị</h2>
+
+<div class="alert alert-info">
+    <p><strong>Lưu ý:</strong> Vui lòng kiểm tra kỹ thông tin trước khi xác nhận thanh toán.</p>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Thông tin bệnh nhân</h3>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>Mã bệnh nhân:</dt>
+            <dd>@Model.BenhNhan.MaBenhNhan</dd>
+            
+            <dt>Họ tên:</dt>
+            <dd>@Model.BenhNhan.HoTen</dd>
+            
+            <dt>Ngày sinh:</dt>
+            <dd>@Model.BenhNhan.NgaySinh.ToString("dd/MM/yyyy")</dd>
+            
+            <dt>Bảo hiểm y tế:</dt>
+            <dd>@(Model.BenhNhan.BaoHiemYTe ? "Có" : "Không")</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">Thông tin thanh toán</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <tr>
+                <th>STT</th>
+                <th>Hình thức điều trị</th>
+                <th>Ngày thực hiện</th>
+                <th>Chi phí</th>
+            </tr>
+            
+            @{
+                int i = 1;
+                foreach (var item in ViewBag.ChiTietDieuTri)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.TenDieuTri</td>
+                        <td>@Convert.ToDateTime(item.NgayThucHien).ToString("dd/MM/yyyy")</td>
+                        <td>@string.Format("{0:N0}", item.ChiPhi) VNĐ</td>
+                    </tr>
+                    i++;
+                }
+            }
+            
+            <tr class="success">
+                <td colspan="3" style="text-align: right;"><strong>Tổng chi phí:</strong></td>
+                <td><strong>@string.Format("{0:N0}", Model.TongChiPhi) VNĐ</strong></td>
+            </tr>
+            
+            @if (Model.BenhNhan.BaoHiemYTe)
+            {
+                decimal giamGia = Model.TongChiPhi * 0.8m;
+                decimal thanhToan = Model.TongChiPhi - giamGia;
+                
+                <tr class="info">
+                    <td colspan="3" style="text-align: right;"><strong>Bảo hiểm y tế chi trả (80%):</strong></td>
+                    <td><strong>@string.Format("{0:N0}", giamGia) VNĐ</strong></td>
+                </tr>
+                
+                <tr class="danger">
+                    <td colspan="3" style="text-align: right;"><strong>Số tiền cần thanh toán:</strong></td>
+                    <td><strong>@string.Format("{0:N0}", thanhToan) VNĐ</strong></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MaChiPhi)
+    
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">Phương thức thanh toán</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Chọn phương thức thanh toán:</label>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="phuongThucThanhToan" value="TienMat" checked>
+                        Tiền mặt
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="phuongThucThanhToan" value="ChuyenKhoan">
+                        Chuyển khoản ngân hàng
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="phuongThucThanhToan" value="The">
+                        Thẻ tín dụng/ghi nợ
+                    </label>
+                </div>
+            </div>
+            
+            <div id="thongTinThanhToan" class="well" style="display: none;">
+                <div class="form-group">
+                    <label>Số thẻ/tài khoản:</label>
+                    <input type="text" class="form-control" name="soThe" />
+                </div>
+                <div class="form-group">
+                    <label>Tên chủ thẻ/tài khoản:</label>
+                    <input type="text" class="form-control" name="tenChuThe" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Ghi chú:</label>
+                <textarea class="form-control" name="ghiChu" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-success" onclick="return confirm('Xác nhận thanh toán?');">
+            <i class="glyphicon glyphicon-ok"></i> Xác nhận thanh toán
+        </button>
+        @Html.ActionLink("Hủy", "Details", new { id = Model.MaChiPhi }, new { @class = "btn btn-default" })
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('input[name="phuongThucThanhToan"]').change(function() {
+                if ($(this).val() === "TienMat") {
+                    $('#thongTinThanhToan').hide();
+                } else {
+                    $('#thongTinThanhToan').show();
+                }
+            });
+        });
+    </script>
+    <script src="~/Scripts/app/quanly-thanhtoan.js"></script>
+}

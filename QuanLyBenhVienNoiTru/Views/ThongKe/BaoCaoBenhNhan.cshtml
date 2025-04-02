@@ -1,0 +1,145 @@
+@model IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.BenhNhan>
+@{
+    ViewBag.Title = "Báo Cáo Bệnh Nhân";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <h2>Báo Cáo Bệnh Nhân</h2>
+    
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thống kê bệnh nhân theo khoa</h6>
+        </div>
+        <div class="card-body">
+            <div class="chart-bar">
+                <canvas id="myBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách bệnh nhân</h6>
+        </div>
+        <div class="card-body">
+            <div class="form-row mb-3">
+                <div class="col-md-3">
+                    <select id="filterKhoa" class="form-control">
+                        <option value="">-- Tất cả khoa --</option>
+                        @foreach (var khoa in ViewBag.DanhSachKhoa)
+                        {
+                            <option value="@khoa.MaKhoa">@khoa.TenKhoa</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select id="filterTrangThai" class="form-control">
+                        <option value="">-- Tất cả trạng thái --</option>
+                        <option value="NoiTru">Đang điều trị nội trú</option>
+                        <option value="DaXuatVien">Đã xuất viện</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="btnSearch">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button id="btnExport" class="btn btn-success">Xuất Excel</button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã BN</th>
+                            <th>Họ tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>Khoa</th>
+                            <th>Ngày nhập viện</th>
+                            <th>Ngày xuất viện</th>
+                            <th>Bảo hiểm</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MaBenhNhan</td>
+                                <td>@item.HoTen</td>
+                                <td>@(item.NgaySinh.HasValue ? item.NgaySinh.Value.ToString("dd/MM/yyyy") : "")</td>
+                                <td>@item.GioiTinh</td>
+                                <td>@item.Khoa.TenKhoa</td>
+                                <td>@item.NgayNhapVien.ToString("dd/MM/yyyy")</td>
+                                <td>@(item.NgayXuatVien.HasValue ? item.NgayXuatVien.Value.ToString("dd/MM/yyyy") : "Đang điều trị")</td>
+                                <td>@(item.BaoHiemYTe ? "Có" : "Không")</td>
+                                <td>@(item.NgayXuatVien.HasValue ? "Đã xuất viện" : "Đang điều trị")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Khởi tạo DataTable
+            var table = $('#dataTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json"
+                }
+            });
+            
+            // Vẽ biểu đồ
+            var ctx = document.getElementById("myBarChart");
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Encode(ViewBag.TenKhoa)),
+                    datasets: [{
+                        label: "Số lượng bệnh nhân",
+                        backgroundColor: "rgba(78, 115, 223, 0.7)",
+                        borderColor: "rgba(78, 115, 223, 1)",
+                        data: @Html.Raw(Json.Encode(ViewBag.SoLuongBenhNhan)),
+                    }],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Xử lý lọc
+            $("#filterKhoa, #filterTrangThai").change(function() {
+                table.draw();
+            });
+            
+            // Tìm kiếm
+            $("#btnSearch").click(function() {
+                table.search($("#searchInput").val()).draw();
+            });
+            
+            // Xuất Excel
+            $("#btnExport").click(function() {
+                window.location.href = '@Url.Action("XuatExcelBaoCaoBenhNhan", "ThongKe")';
+            });
+        });
+    </script>
+}

@@ -1,0 +1,57 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.HinhThucDieuTri
+
+@{
+    ViewBag.Title = "Chi tiết điều trị";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Chi tiết hình thức điều trị</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mã điều trị:</dt>
+        <dd>@Html.DisplayFor(model => model.MaDieuTri)</dd>
+
+        <dt>Tên điều trị:</dt>
+        <dd>@Html.DisplayFor(model => model.TenDieuTri)</dd>
+
+        <dt>Chi phí:</dt>
+        <dd>@String.Format("{0:N0} VNĐ", Model.ChiPhi)</dd>
+
+        <dt>Mô tả:</dt>
+        <dd>@Html.DisplayFor(model => model.MoTa)</dd>
+    </dl>
+</div>
+
+<h3>Thống kê sử dụng</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lượt sử dụng</h3>
+            </div>
+            <div class="panel-body">
+                <p>Tổng số lượt sử dụng: <strong>@ViewBag.TongLuotSuDung</strong></p>
+                <p>Sử dụng trong tháng này: <strong>@ViewBag.LuotSuDungThangNay</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Doanh thu</h3>
+            </div>
+            <div class="panel-body">
+                <p>Tổng doanh thu: <strong>@String.Format("{0:N0} VNĐ", ViewBag.TongDoanhThu)</strong></p>
+                <p>Doanh thu trong tháng này: <strong>@String.Format("{0:N0} VNĐ", ViewBag.DoanhThuThangNay)</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.MaDieuTri }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-default" })
+</p>

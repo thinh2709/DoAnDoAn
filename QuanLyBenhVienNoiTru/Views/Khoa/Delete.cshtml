@@ -1,0 +1,47 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.Khoa
+
+@{
+    ViewBag.Title = "Xóa khoa";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Xác nhận xóa khoa</h2>
+
+<div class="alert alert-danger">
+    <h4>Bạn có chắc chắn muốn xóa khoa này?</h4>
+    @if (ViewBag.SoBenhNhan > 0)
+    {
+        <div class="text-danger">
+            <strong>Cảnh báo:</strong> Hiện có @ViewBag.SoBenhNhan bệnh nhân đang điều trị tại khoa này!
+        </div>
+    }
+</div>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Mã khoa:</dt>
+        <dd>@Html.DisplayFor(model => model.MaKhoa)</dd>
+
+        <dt>Tên khoa:</dt>
+        <dd>@Html.DisplayFor(model => model.TenKhoa)</dd>
+
+        <dt>Mô tả:</dt>
+        <dd>@Html.DisplayFor(model => model.MoTa)</dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions">
+            @if (ViewBag.SoBenhNhan == 0)
+            {
+                <input type="submit" value="Xóa" class="btn btn-danger" />
+            }
+            else
+            {
+                <input type="submit" value="Xóa" class="btn btn-danger" disabled title="Không thể xóa khoa đang có bệnh nhân điều trị" />
+            }
+            @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

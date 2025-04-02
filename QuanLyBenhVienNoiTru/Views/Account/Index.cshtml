@@ -1,0 +1,73 @@
+@model IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.TaiKhoan>
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Quản lý tài khoản</h2>
+
+<p>
+    @Html.ActionLink("Thêm tài khoản mới", "DangKy", null, new { @class = "btn btn-primary" })
+</p>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Danh sách tài khoản</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover" id="taiKhoanTable">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.MaTaiKhoan)</th>
+                    <th>@Html.DisplayNameFor(model => model.TenDangNhap)</th>
+                    <th>@Html.DisplayNameFor(model => model.VaiTro)</th>
+                    <th>Thông tin liên kết</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.MaTaiKhoan)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TenDangNhap)</td>
+                        <td>@Html.DisplayFor(modelItem => item.VaiTro)</td>
+                        <td>
+                            @if (item.VaiTro == "Bác sĩ" && item.BacSi != null)
+                            {
+                                <span>Bác sĩ: @item.BacSi.HoTen</span>
+                            }
+                            else if (item.VaiTro == "Khách" && item.KhachThamBenh != null)
+                            {
+                                <span>Khách: @item.KhachThamBenh.HoTen</span>
+                            }
+                            else
+                            {
+                                <span>Chưa liên kết</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Đặt lại mật khẩu", "DatLaiMatKhau", new { id = item.MaTaiKhoan }, new { @class = "btn btn-warning btn-sm" })
+                            @if (item.MaTaiKhoan != 1) // Không cho phép xóa tài khoản Admin mặc định
+                            {
+                                @Html.ActionLink("Xóa", "Xoa", new { id = item.MaTaiKhoan }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');" })
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#taiKhoanTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json"
+                }
+            });
+        });
+    </script>
+}

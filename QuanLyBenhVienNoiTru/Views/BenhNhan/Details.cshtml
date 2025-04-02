@@ -1,0 +1,54 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.BenhNhan
+
+@{
+    ViewData["Title"] = "Chi tiết bệnh nhân";
+}
+
+<div class="container-fluid">
+    <h1>Chi tiết bệnh nhân</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.HoTen)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.HoTen)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NgaySinh)</dt>
+                        <dd class="col-sm-8">@(Model.NgaySinh.HasValue ? Model.NgaySinh.Value.ToString("dd/MM/yyyy") : "")</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.GioiTinh)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.GioiTinh)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.SoDienThoai)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.SoDienThoai)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DiaChi)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.DiaChi)</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Khoa)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Khoa.TenKhoa)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NgayNhapVien)</dt>
+                        <dd class="col-sm-8">@Model.NgayNhapVien.ToString("dd/MM/yyyy")</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NgayXuatVien)</dt>
+                        <dd class="col-sm-8">@(Model.NgayXuatVien.HasValue ? Model.NgayXuatVien.Value.ToString("dd/MM/yyyy") : "Chưa xuất viện")</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.BaoHiemYTe)</dt>
+                        <dd class="col-sm-8">@(Model.BaoHiemYTe ? "Có" : "Không")</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <a asp-action="Edit" asp-route-id="@Model.MaBenhNhan" class="btn btn-warning"><i class="bi bi-pencil"></i> Sửa</a>
+                <a asp-action="Index" class="btn btn-secondary">Trở về</a>
+            </div>
+        </div>
+    </div>
+</div>

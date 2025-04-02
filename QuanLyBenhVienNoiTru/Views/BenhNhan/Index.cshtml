@@ -1,0 +1,77 @@
+@model IEnumerable<QuanLyBenhVienNoiTru.Models.Entities.BenhNhan>
+
+@{
+    ViewData["Title"] = "Danh sách bệnh nhân";
+}
+
+<div class="container-fluid">
+    <h1>Danh sách bệnh nhân</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm mới</a>
+    </p>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="benhNhanTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Mã BN</th>
+                            <th>Họ tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>Số điện thoại</th>
+                            <th>Khoa</th>
+                            <th>Ngày nhập viện</th>
+                            <th>Ngày xuất viện</th>
+                            <th>Bảo hiểm Y tế</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MaBenhNhan</td>
+                                <td>@item.HoTen</td>
+                                <td>@(item.NgaySinh.HasValue ? item.NgaySinh.Value.ToString("dd/MM/yyyy") : "")</td>
+                                <td>@item.GioiTinh</td>
+                                <td>@item.SoDienThoai</td>
+                                <td>@item.Khoa.TenKhoa</td>
+                                <td>@item.NgayNhapVien.ToString("dd/MM/yyyy")</td>
+                                <td>@(item.NgayXuatVien.HasValue ? item.NgayXuatVien.Value.ToString("dd/MM/yyyy") : "")</td>
+                                <td>@(item.BaoHiemYTe ? "Có" : "Không")</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a asp-action="Details" asp-route-id="@item.MaBenhNhan" class="btn btn-sm btn-info">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a asp-action="Edit" asp-route-id="@item.MaBenhNhan" class="btn btn-sm btn-warning">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.MaBenhNhan" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#benhNhanTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/vi.json'
+                }
+            });
+        });
+    </script>
+}

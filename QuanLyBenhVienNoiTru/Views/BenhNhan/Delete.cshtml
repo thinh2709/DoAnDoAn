@@ -1,0 +1,37 @@
+@model QuanLyBenhVienNoiTru.Models.Entities.BenhNhan
+
+@{
+    ViewData["Title"] = "Xóa bệnh nhân";
+}
+
+<div class="container-fluid">
+    <h1>Xóa bệnh nhân</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="alert alert-danger">
+                <h4>Bạn có chắc chắn muốn xóa bệnh nhân này?</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.HoTen)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.HoTen)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NgaySinh)</dt>
+                        <dd class="col-sm-8">@(Model.NgaySinh.HasValue ? Model.NgaySinh.Value.ToString("dd/MM/yyyy") : "")</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Khoa)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Khoa.TenKhoa)</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="MaBenhNhan" />
+                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Xóa</button>
+                <a asp-action="Index" class="btn btn-secondary">Trở về</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+@model QuanLyBenhVienNoiTru.Models.ViewModels.BenhNhanViewModel
+
+@{
+    ViewData["Title"] = "Cập nhật thông tin bệnh nhân";
+}
+
+<div class="container-fluid">
+    <h1>Cập nhật thông tin bệnh nhân</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="MaBenhNhan" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="HoTen" class="control-label"></label>
+                            <input asp-for="HoTen" class="form-control" />
+                            <span asp-validation-for="HoTen" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="NgaySinh" class="control-label"></label>
+                            <input asp-for="NgaySinh" class="form-control" type="date" />
+                            <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="GioiTinh" class="control-label"></label>
+                            <select asp-for="GioiTinh" class="form-select">
+                                <option value="">-- Chọn giới tính --</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                            <span asp-validation-for="GioiTinh" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="SoDienThoai" class="control-label"></label>
+                            <input asp-for="SoDienThoai" class="form-control" />
+                            <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="DiaChi" class="control-label"></label>
+                            <textarea asp-for="DiaChi" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="DiaChi" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="MaKhoa" class="control-label"></label>
+                            <select asp-for="MaKhoa" class="form-select" asp-items="ViewBag.Khoas">
+                                <option value="">-- Chọn khoa --</option>
+                            </select>
+                            <span asp-validation-for="MaKhoa" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="NgayNhapVien" class="control-label"></label>
+                            <input asp-for="NgayNhapVien" class="form-control" type="date" />
+                            <span asp-validation-for="NgayNhapVien" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="NgayXuatVien" class="control-label"></label>
+                            <input asp-for="NgayXuatVien" class="form-control" type="date" />
+                            <span asp-validation-for="NgayXuatVien" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="form-check">
+                                <input asp-for="BaoHiemYTe" class="form-check-input" />
+                                <label asp-for="BaoHiemYTe" class="form-check-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Lưu</button>
+                    <a asp-action="Index" class="btn btn-secondary">Trở về</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
